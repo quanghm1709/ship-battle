@@ -239,7 +239,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.19047546
+        value: 0.06802368
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -332,10 +332,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1472167
-  m_Height: 0.5398464
+  m_Radius: 0.05694882
+  m_Height: 0.23473072
   m_Direction: 2
-  m_Center: {x: 0, y: 0.16255511, z: 0}
+  m_Center: {x: 0, y: 0.00033485144, z: -0.018307209}
 --- !u!1 &8874658979811109411
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,8 +363,8 @@ Transform:
   m_GameObject: {fileID: 8874658979811109411}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.149, z: 0}
-  m_LocalScale: {x: 0.28259134, y: 0.28259134, z: 0.28259134}
+  m_LocalPosition: {x: 0, y: -0.002, z: -0.021695}
+  m_LocalScale: {x: 0.1118433, y: 0.1118433, z: 0.1118433}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7936251615220305314}

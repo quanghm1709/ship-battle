@@ -10,6 +10,9 @@ public class BoatController : MonoBehaviour
 
     [SerializeField] private Rigidbody rb;
 
+    private float moveInput;
+    private float turnInput;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,8 +22,8 @@ public class BoatController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveInput = Input.GetAxis("Vertical");   
-        float turnInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxisRaw("Vertical");   
+        turnInput = Input.GetAxisRaw("Horizontal");
 
         if (moveInput != 0)
         {
@@ -32,5 +35,15 @@ public class BoatController : MonoBehaviour
         rb.MoveRotation(rb.rotation * Quaternion.Euler(0, turn, 0));
 
         rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        moveInput = speed;
+    }
+
+    public void SetTurnSpeed(float turnSpeed)
+    {
+        turnInput = turnSpeed;
     }
 }

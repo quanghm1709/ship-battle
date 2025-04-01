@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Instantiate(hitVFX, transform.position, Quaternion.identity);
+        collision.gameObject.GetComponent<BoatHealth>().UpdateHealth(-1);
         Destroy(gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BoatAI : MonoBehaviour
@@ -18,9 +19,11 @@ public class BoatAI : MonoBehaviour
     private float turnInput;
     private float directionTimer;
     private float shootingTimer;
+    private bool isActive = true;
 
     void Start()
     {
+        playerBoat = FindFirstObjectByType<BoatController>().transform;
         rb = GetComponent<Rigidbody>();
         rb.linearDamping = 0.98f;         
         rb.angularDamping = 0.95f;  
@@ -29,6 +32,7 @@ public class BoatAI : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isActive) return;
         directionTimer -= Time.fixedDeltaTime;
         if (directionTimer <= 0)
         {
@@ -70,5 +74,19 @@ public class BoatAI : MonoBehaviour
         rbBullet.linearVelocity = directionToPlayer * bulletSpeed;
 
         Destroy(bullet, 5f);
+    }
+
+    public void DisableBoat()
+    {
+        StartCoroutine(IDisableBoat());
+    }
+
+    IEnumerator IDisableBoat()
+    {
+        isActive = false;
+        rb.useGravity = true;
+        GetComponent<BoxCollider>().enabled = false;
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }

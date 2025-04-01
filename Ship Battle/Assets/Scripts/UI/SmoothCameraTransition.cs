@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SmoothCameraTransition : MonoBehaviour
 {
@@ -35,5 +36,10 @@ public class SmoothCameraTransition : MonoBehaviour
 
         fromCam.gameObject.SetActive(false);
         isSwitching = false;
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

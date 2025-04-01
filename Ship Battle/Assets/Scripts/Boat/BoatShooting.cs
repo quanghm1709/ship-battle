@@ -43,7 +43,7 @@ public class BoatShooting : MonoBehaviour
     void RotateTurret()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(Vector3.up, Vector3.zero); // Mặt phẳng ngang
+        Plane plane = new Plane(Vector3.up, Vector3.zero); 
         float distance;
 
         if (plane.Raycast(ray, out distance))
