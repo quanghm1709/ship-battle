@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BoatController : MonoBehaviour
@@ -9,9 +10,14 @@ public class BoatController : MonoBehaviour
     public float angularDrag = 0.95f;    
 
     [SerializeField] private Rigidbody rb;
+    [SerializeField] TrailRenderer trail;
 
     private float moveInput;
     private float turnInput;
+    public float boostSpeed = 20f;
+    public float boostDuration = 1f;
+
+    private bool isBoosting = false;
 
     void Start()
     {
@@ -35,6 +41,11 @@ public class BoatController : MonoBehaviour
         rb.MoveRotation(rb.rotation * Quaternion.Euler(0, turn, 0));
 
         rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Boost());
+        }
     }
 
     public void SetSpeed(float speed)
@@ -45,5 +56,21 @@ public class BoatController : MonoBehaviour
     public void SetTurnSpeed(float turnSpeed)
     {
         turnInput = turnSpeed;
+    }
+
+    IEnumerator Boost()
+    {
+        if (isBoosting) yield break;
+        isBoosting = true;
+        //trail.enabled = true;
+        float originalMaxSpeed = maxSpeed;
+        maxSpeed = boostSpeed;
+        rb.AddForce(transform.forward * boostSpeed, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(boostDuration);
+
+        maxSpeed = originalMaxSpeed;
+        isBoosting = false;
+        //trail.enabled = false;
     }
 }
